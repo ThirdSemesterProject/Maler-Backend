@@ -25,11 +25,14 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
+      - name: List files after build
+        run: ls -R target
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.jar'
+          path: target/*.jar
           retention-days: 1
 
   deploy:
@@ -37,16 +40,18 @@ jobs:
     needs: build
     environment:
       name: 'Production'
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
-  
+      id-token: write
+
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
         with:
           name: java-app
       
+      - name: List downloaded files
+        run: ls -R
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -59,6 +64,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'Malingdk'
-          slot-name: 'Production'
           package: '*.jar'
-          
+
