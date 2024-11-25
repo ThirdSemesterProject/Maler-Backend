@@ -1,4 +1,4 @@
-package stud.kea.dk.malerbackend.paint.ProductNo;
+package stud.kea.dk.malerbackend.productNo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
