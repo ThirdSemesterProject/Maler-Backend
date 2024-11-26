@@ -6,4 +6,5 @@ import stud.kea.dk.malerbackend.paintNo.model.PaintNo;
 
 @Repository
 public interface PaintNoRepository extends JpaRepository<PaintNo, Long> {
+    //test
 }
