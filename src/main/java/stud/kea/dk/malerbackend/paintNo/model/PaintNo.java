@@ -1,19 +1,25 @@
 package stud.kea.dk.malerbackend.paintNo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
+import stud.kea.dk.malerbackend.paint.model.Paint;
+
+import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaintNo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String ItemNo;
-    private Enum liters; // Eller andre nødvendige felter
+    private String liters; // Assuming LiterSize is a valid Enum
+
+    @OneToMany(mappedBy = "paintNo")
+    private List<Paint> paints;
+
 }
+
