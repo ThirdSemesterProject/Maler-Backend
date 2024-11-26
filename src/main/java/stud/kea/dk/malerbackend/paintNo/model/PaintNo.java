@@ -8,8 +8,7 @@ import java.util.List;
 
 @Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@Table(name = "paint_no")
 public class PaintNo {
 
     @Id
@@ -21,6 +20,14 @@ public class PaintNo {
 
     private String liters;
 
-    @OneToMany(mappedBy = "paintNo", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Paint> paints;
+    public PaintNo() {}
+
+    public PaintNo(Long id, String itemNo, String liters) {
+        this.id = id;
+        this.itemNo = itemNo;
+        this.liters = liters;
+    }
+
+    // Getters and setters...
 }
+
