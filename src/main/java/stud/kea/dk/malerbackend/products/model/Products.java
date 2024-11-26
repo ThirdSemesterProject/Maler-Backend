@@ -10,6 +10,7 @@ import stud.kea.dk.malerbackend.orders.model.Orders;
 @Setter
 @AllArgsConstructor
 @Entity
+@Table(name = "products")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Products {
 
@@ -20,23 +21,19 @@ public class Products {
     @Column(nullable = false)
     private String name;
 
-    private double pris;
-    private String info;
-    private String categories;
+    private double price;
+    private String description;
+    private String category;
     private String brand;
 
-    @ManyToOne
-    @JoinColumn(name = "order_id") // Foreign key til Orders
-    private Orders order;
+    public Products() {}
 
-    public Products() {
-    }
-
-    public Products(String name, double pris, String info, String categories, String brand) {
+    public Products(String name, double price, String description, String category, String brand) {
         this.name = name;
-        this.pris = pris;
-        this.info = info;
-        this.categories = categories;
+        this.price = price;
+        this.description = description;
+        this.category = category;
         this.brand = brand;
     }
+
 }

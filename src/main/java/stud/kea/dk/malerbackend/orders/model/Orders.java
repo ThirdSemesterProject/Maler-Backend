@@ -5,32 +5,38 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import stud.kea.dk.malerbackend.customer.model.Customer;
+import stud.kea.dk.malerbackend.orderItem.model.OrderItem;
 import stud.kea.dk.malerbackend.products.model.Products;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
+@Table(name = "orders")
 public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column(nullable = false)
+    private String customerName;
+
+    @Column(nullable = false)
+    private LocalDate orderDate;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Products> products;
+    private List<OrderItem> items = new ArrayList<>();
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "customer_id", nullable = false) // Foreign key til Customer
-    private Customer customer;
+    public Orders() {}
 
-    private String pickup;
-    private double totalPrice;
-    private LocalDate date;
-
-    public Orders() {
+    public Orders(String customerName, LocalDate orderDate) {
+        this.customerName = customerName;
+        this.orderDate = orderDate;
     }
+
 }
