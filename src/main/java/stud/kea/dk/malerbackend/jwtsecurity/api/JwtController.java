@@ -1,18 +1,14 @@
 package stud.kea.dk.malerbackend.jwtsecurity.api;
 
 import stud.kea.dk.malerbackend.jwtsecurity.JwtTokenManager;
-import stud.kea.dk.malerbackend.jwtsecurity.entity.Book;
 import stud.kea.dk.malerbackend.jwtsecurity.entity.JwtRequestModel;
 import stud.kea.dk.malerbackend.jwtsecurity.entity.JwtResponseModel;
 import stud.kea.dk.malerbackend.jwtsecurity.entity.User;
-import stud.kea.dk.malerbackend.jwtsecurity.service.BookService;
 import stud.kea.dk.malerbackend.jwtsecurity.service.IUserService;
 import stud.kea.dk.malerbackend.jwtsecurity.service.JwtUserDetailsService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -28,10 +24,8 @@ import java.util.Map;
 @RestController
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookController {
+public class JwtController {
 
-    @Autowired
-    private BookService bookService;
     @Autowired
     private JwtUserDetailsService userDetailsService;
     @Autowired
@@ -94,10 +88,5 @@ public class BookController {
         Map<String,String > map = new HashMap<>();
         map.put("message","user deleted, if found " + user.getUsername());
         return ResponseEntity.ok(map);
-    }
-
-    @GetMapping("/api/books")
-    public Page<Book> getAllBooks(Pageable pageable) {
-        return bookService.getAllBooks(pageable);
     }
 }
