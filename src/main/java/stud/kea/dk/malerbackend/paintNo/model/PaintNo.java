@@ -1,4 +1,4 @@
-package stud.kea.dk.malerbackend.productNo.model;
+package stud.kea.dk.malerbackend.paintNo.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ProductNo {
+public class PaintNo {
     private long id;
     private String liters;
 }

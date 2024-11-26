@@ -4,44 +4,44 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import stud.kea.dk.malerbackend.paint.model.Paint;
-import stud.kea.dk.malerbackend.productNo.model.ProductNo;
-import stud.kea.dk.malerbackend.productNo.repository.ProductNoRepository;
+import stud.kea.dk.malerbackend.paintNo.model.PaintNo;
+import stud.kea.dk.malerbackend.paintNo.repository.PaintNoRepository;
 
 @Component
 public class PaintInitdata implements CommandLineRunner {
 
     private final PaintRepository paintRepository;
-    private final ProductNoRepository productNoRepository;
+    private final PaintNoRepository paintNoRepository;
 
     @Autowired
-    public PaintInitdata(PaintRepository paintRepository, ProductNoRepository productNoRepository) {
+    public PaintInitdata(PaintRepository paintRepository, PaintNoRepository paintNoRepository) {
         this.paintRepository = paintRepository;
-        this.productNoRepository = productNoRepository;
+        this.paintNoRepository = paintNoRepository;
     }
 
     @Override
     public void run(String... args) throws Exception {
         // Slet eksisterende data (valgfrit)
         paintRepository.deleteAll();
-        productNoRepository.deleteAll();
+        paintNoRepository.deleteAll();
 
         // Opret ProductNo-objekter
-        ProductNo productNo1 = new ProductNo(4050212L, "0,9 L");
-        ProductNo productNo2 = new ProductNo(4050213L, "2,7 L");
-        ProductNo productNo3 = new ProductNo(4050215L, "4,5 L");
-        ProductNo productNo4 = new ProductNo(4051012L, "0,9 L");
-        ProductNo productNo5 = new ProductNo(4051013L, "2,7 L");
-        ProductNo productNo6 = new ProductNo(4051015L, "4,5 L");
-        ProductNo productNo7 = new ProductNo(4051016L, "9 L");
+        PaintNo paintNo1 = new PaintNo(4050212L, "0,9 L");
+        PaintNo paintNo2 = new PaintNo(4050213L, "2,7 L");
+        PaintNo paintNo3 = new PaintNo(4050215L, "4,5 L");
+        PaintNo paintNo4 = new PaintNo(4051012L, "0,9 L");
+        PaintNo paintNo5 = new PaintNo(4051013L, "2,7 L");
+        PaintNo paintNo6 = new PaintNo(4051015L, "4,5 L");
+        PaintNo paintNo7 = new PaintNo(4051016L, "9 L");
 
         // Gem ProductNo i databasen
-        productNoRepository.save(productNo1);
-        productNoRepository.save(productNo2);
-        productNoRepository.save(productNo3);
-        productNoRepository.save(productNo4);
-        productNoRepository.save(productNo5);
-        productNoRepository.save(productNo6);
-        productNoRepository.save(productNo7);
+        paintNoRepository.save(paintNo1);
+        paintNoRepository.save(paintNo2);
+        paintNoRepository.save(paintNo3);
+        paintNoRepository.save(paintNo4);
+        paintNoRepository.save(paintNo5);
+        paintNoRepository.save(paintNo6);
+        paintNoRepository.save(paintNo7);
 
         // Opret Paint-objekter og forbind med ProductNo
         Paint paint1 = new Paint(
@@ -53,7 +53,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4050212L,
                 "Hvid",
                 "5 Strå",
-                productNo1
+                paintNo1
         );
 
         Paint paint2 = new Paint(
@@ -65,7 +65,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4050213L,
                 "Hvid",
                 "5 Strå",
-                productNo2
+                paintNo2
         );
 
         Paint paint3 = new Paint(
@@ -77,7 +77,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4050215L,
                 "Hvid",
                 "5 Strå",
-                productNo3
+                paintNo3
         );
 
         Paint paint4 = new Paint(
@@ -89,7 +89,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4051012L,
                 "Hvid",
                 "5 Strå",
-                productNo4
+                paintNo4
         );
 
         Paint paint5 = new Paint(
@@ -101,7 +101,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4051013L,
                 "Hvid",
                 "5 Strå",
-                productNo5
+                paintNo5
         );
 
         Paint paint6 = new Paint(
@@ -113,7 +113,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4051015L,
                 "Hvid",
                 "5 Strå",
-                productNo6
+                paintNo6
         );
 
         Paint paint7 = new Paint(
@@ -125,7 +125,7 @@ public class PaintInitdata implements CommandLineRunner {
                 4051016L,
                 "Hvid",
                 "5 Strå",
-                productNo7
+                paintNo7
         );
 
         // Gem Paint i databasen
