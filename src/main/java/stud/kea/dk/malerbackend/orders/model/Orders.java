@@ -20,13 +20,13 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    // One order has many products
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Products> products;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn
+    @JoinColumn(name = "customer_id", nullable = false) // Foreign key til Customer
     private Customer customer;
+
     private String pickup;
     private double totalPrice;
     private LocalDate date;

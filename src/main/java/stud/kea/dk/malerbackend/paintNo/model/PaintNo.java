@@ -15,11 +15,12 @@ public class PaintNo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String ItemNo;
-    private String liters; // Assuming LiterSize is a valid Enum
 
-    @OneToMany(mappedBy = "paintNo")
+    @Column(nullable = false, unique = true)
+    private String itemNo;
+
+    private String liters;
+
+    @OneToMany(mappedBy = "paintNo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Paint> paints;
-
 }
-

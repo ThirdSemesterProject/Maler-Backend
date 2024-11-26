@@ -3,7 +3,6 @@ package stud.kea.dk.malerbackend.products.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import stud.kea.dk.malerbackend.orders.model.Orders;
 
@@ -17,15 +16,17 @@ public class Products {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String name;
+
     private double pris;
     private String info;
     private String categories;
     private String brand;
 
-    // Many products belong to one order
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "order_id") // Foreign key til Orders
     private Orders order;
 
     public Products() {

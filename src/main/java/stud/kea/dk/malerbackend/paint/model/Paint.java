@@ -11,12 +11,12 @@ import stud.kea.dk.malerbackend.products.model.Products;
 @Data
 @NoArgsConstructor
 public class Paint extends Products {
+
     private String color;
     private String shine;
 
-
     @ManyToOne
-    @JoinColumn(name = "paint_no_id") // Kolonnenavn i Paint-tabellen
+    @JoinColumn(name = "paint_no_id", nullable = false) // Foreign key til PaintNo
     private PaintNo paintNo;
 
     public Paint(String name, double pris, String info, String categories, String brand, String color, String shine, PaintNo paintNo) {
