@@ -14,6 +14,7 @@ public class Paint extends Products {
     private String color;
     private String shine;
 
+
     @ManyToOne
     @JoinColumn(name = "paint_no_id") // Kolonnenavn i Paint-tabellen
     private PaintNo paintNo;

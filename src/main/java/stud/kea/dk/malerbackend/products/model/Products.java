@@ -11,6 +11,7 @@ import stud.kea.dk.malerbackend.orders.model.Orders;
 @Setter
 @AllArgsConstructor
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Products {
 
     @Id
