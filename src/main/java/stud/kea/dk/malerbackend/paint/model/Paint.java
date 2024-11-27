@@ -18,13 +18,13 @@ public class Paint extends Products {
     @JoinColumn(name = "paint_no_id", nullable = false) // Foreign key til PaintNo
     private PaintNo paintNo;
 
-    @OneToOne
-    @JoinColumn(name = "color_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "color_id")
     private Color color;
 
 
 
-    public Paint(String name, double pris, String info, String categories, String brand, String shine, PaintNo paintNo) {
+    public Paint(String name, double pris, String info, String categories, String brand, String shine, String s, PaintNo paintNo, Color whiteColor) {
         super(name, pris, info, categories, brand); // Kalder superklassens konstruktor
         this.shine = shine;
         this.paintNo = paintNo;
