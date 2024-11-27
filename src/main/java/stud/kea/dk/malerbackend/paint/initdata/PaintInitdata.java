@@ -21,7 +21,16 @@ public class PaintInitdata implements CommandLineRunner {
     }
 
     @Override
+    public void run(String... args) throws Exception {
+
+    }
+
+/*    @Override
     public void run(String... args) {
+        if (paintRepository.count() > 0) {
+            System.out.println("Initialisering springes over, da data allerede findes i databasen.");
+            return;
+        }
         // Opret PaintNo objekter
         PaintNo paintNo1 = new PaintNo(null, "4050212", "0,9 L");
         PaintNo paintNo2 = new PaintNo(null, "4050213", "2,7 L");
@@ -115,5 +124,7 @@ public class PaintInitdata implements CommandLineRunner {
 
         System.out.println("Testdata med 6 Paint og PaintNo er blevet indlæst.");
     }
+
+ */
 
 }
