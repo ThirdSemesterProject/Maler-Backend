@@ -18,4 +18,8 @@ public class Admin {
     private int id;
     String username;
     String password;
+
+    public Admin() {
+
+    }
 }
