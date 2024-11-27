@@ -1,35 +1,30 @@
 package stud.kea.dk.malerbackend.search;
 
 import org.springframework.stereotype.Service;
-import stud.kea.dk.malerbackend.paintNo.model.PaintNo;
-import stud.kea.dk.malerbackend.paintNo.repository.PaintNoRepository;
-import stud.kea.dk.malerbackend.products.model.Products;
-import stud.kea.dk.malerbackend.products.repository.ProductsRepository;
+import stud.kea.dk.malerbackend.paint.model.Paint;
+import stud.kea.dk.malerbackend.paint.repository.PaintRepository;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class SearchService {
+    private final PaintRepository paintRepository;
 
-    private final PaintNoRepository paintNoRepository;
-    private final ProductsRepository productsRepository;
-
-    public SearchService(PaintNoRepository paintNoRepository, ProductsRepository productsRepository) {
-        this.paintNoRepository = paintNoRepository;
-        this.productsRepository = productsRepository;
+    public SearchService(PaintRepository paintRepository) {
+        this.paintRepository = paintRepository;
     }
 
-    public Map<String, Object> searchByNameOrItemNo(String query) {
-        List<PaintNo> paintNoResults = paintNoRepository.findByItemNoContainingIgnoreCase(query);
-        List<Products> productResults = productsRepository.findByNameContainingIgnoreCase(query);
+    public List<SearchDto> searchByNameOrItemNo(String query) {
+        List<Paint> paints = paintRepository.findByNameContainingIgnoreCaseOrPaintNo_ItemNoContainingIgnoreCase(query, query);
 
-        // Kombiner resultaterne i en Map (eller anden struktur efter behov)
-        Map<String, Object> combinedResults = new HashMap<>();
-        combinedResults.put("paintNos", paintNoResults);
-        combinedResults.put("products", productResults);
-
-        return combinedResults;
+        return paints.stream().map(paint -> new SearchDto(
+                paint.getName(),
+                paint.getPaintNo().getItemNo(),
+                paint.getPaintNo().getLiters(),
+                paint.getCategory(),
+                paint.getPrice(),
+                paint.getShine()
+        )).collect(Collectors.toList());
     }
 }

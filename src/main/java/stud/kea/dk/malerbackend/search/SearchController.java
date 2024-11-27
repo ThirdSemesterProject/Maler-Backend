@@ -1,13 +1,12 @@
 package stud.kea.dk.malerbackend.search;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api")
 public class SearchController {
@@ -18,9 +17,10 @@ public class SearchController {
         this.searchService = searchService;
     }
 
+
     @GetMapping("/search")
-    public ResponseEntity<Map<String, Object>> searchItems(@RequestParam String query) {
-        Map<String, Object> results = searchService.searchByNameOrItemNo(query);
+    public ResponseEntity<List<SearchDto>> searchItems(@RequestParam String query) {
+        List<SearchDto> results = searchService.searchByNameOrItemNo(query);
         return ResponseEntity.ok(results);
     }
 }
