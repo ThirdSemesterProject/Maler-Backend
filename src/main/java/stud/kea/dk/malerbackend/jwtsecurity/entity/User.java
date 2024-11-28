@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Getter
@@ -20,13 +21,18 @@ public class User {
     private String username;
     private String password;
 
+    @Column(name = "local_date", columnDefinition = "DATE")
+    private LocalDate localDate;
+
     @Column(name = "local_time", columnDefinition = "TIME")
     private LocalTime localTime;
+
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.localTime = LocalTime.now(); // Automatically set to the current time
+        this.localTime = LocalTime.now();
+        this.localDate = LocalDate.now();
     }
 
     public LocalTime getLocalTime() {
@@ -35,5 +41,13 @@ public class User {
 
     public void setLocalTime(LocalTime localTime) {
         this.localTime = localTime;
+    }
+
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
     }
 }
