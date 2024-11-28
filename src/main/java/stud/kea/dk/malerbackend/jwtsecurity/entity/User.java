@@ -21,11 +21,12 @@ public class User {
     private String password;
 
     @Column(name = "local_time", columnDefinition = "TIME")
-    private LocalTime localTime = LocalTime.of(6,43,12);
+    private LocalTime localTime;
 
     public User(String username, String password) {
-        this.username=username;
-        this.password=password;
+        this.username = username;
+        this.password = password;
+        this.localTime = LocalTime.now(); // Automatically set to the current time
     }
 
     public LocalTime getLocalTime() {
