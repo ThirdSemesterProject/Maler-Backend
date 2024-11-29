@@ -1,44 +1,29 @@
 package stud.kea.dk.malerbackend.search;
 
 public class SearchDto {
-    private String name; // Fra Products/Paint
-    private String itemNo; // Fra PaintNo
-    private String liters; // Fra PaintNo
-    private String category; // Fra Products
-    private double price; // Fra Products
-    private String shine; // Fra Paint
+    private String name;
+    private String category;
+    private double price;
+    private String description;
+    private String brand;
+    private String URL;
 
-    public SearchDto(String name, String itemNo, String liters, String category, double price, String shine) {
+    public SearchDto(String name, String category, double price, String description, String brand, String URL) {
         this.name = name;
-        this.itemNo = itemNo;
-        this.liters = liters;
         this.category = category;
         this.price = price;
-        this.shine = shine;
+        this.description = description;
+        this.brand = brand;
+        this.URL = URL;
     }
 
+    // Getters and Setters
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getItemNo() {
-        return itemNo;
-    }
-
-    public void setItemNo(String itemNo) {
-        this.itemNo = itemNo;
-    }
-
-    public String getLiters() {
-        return liters;
-    }
-
-    public void setLiters(String liters) {
-        this.liters = liters;
     }
 
     public String getCategory() {
@@ -57,11 +42,25 @@ public class SearchDto {
         this.price = price;
     }
 
-    public String getShine() {
-        return shine;
+    public String getDescription() {
+        return description;
     }
 
-    public void setShine(String shine) {
-        this.shine = shine;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+    public String getURL() {
+        return URL;
+    }
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 }
