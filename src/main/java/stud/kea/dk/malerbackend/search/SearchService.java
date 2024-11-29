@@ -16,7 +16,7 @@ public class SearchService {
     }
 
     public List<SearchDto> searchByNameOrItemNo(String query) {
-        List<Paint> paints = paintRepository.findByNameContainingIgnoreCaseOrPaintNo_ItemNoContainingIgnoreCase(query, query);
+        List<Paint> paints = paintRepository.findByNameContainingIgnoreCaseOrPaintNo_ItemNoContainingIgnoreCase(query);
 
         return paints.stream().map(paint -> new SearchDto(
                 paint.getName(),
