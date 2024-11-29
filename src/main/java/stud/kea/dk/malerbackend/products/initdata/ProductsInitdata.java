@@ -88,6 +88,6 @@ public class ProductsInitdata implements CommandLineRunner {
 
             System.out.println("Produkter tilføjet til databasen.");
         }// else {
-          //  System.out.println("Products-tabellen er allerede udfyldt. Ingen data tilføjet.");
+          //  System.out.println("Products-tabellen er allerede udfyldt. Ingen data tilføjet.");heh
     }
 
