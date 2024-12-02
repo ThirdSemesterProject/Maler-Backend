@@ -87,7 +87,7 @@ public class PaintInitdata implements CommandLineRunner {
 
             Paint paint2 = new Paint(
                     "B&J 5 Vægmaling",
-                    "http://webp.bj.dk/productFiles/405/405_OL.pngt",
+                    "http://webp.bj.dk/productFiles/405/405_OL.png",
                     249.95,
                     "Fortynding: Vand, Værktøj: Pensel, Påføring: +10 °C til +25°C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",

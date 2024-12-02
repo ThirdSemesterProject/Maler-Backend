@@ -18,7 +18,7 @@ public class ProductsInitdata implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        //if (productsRepository.count() == 0) {
+        if (productsRepository.count() == 0) {
             System.out.println("Products-tabellen er tom. Tilføjer testdata...");
 
             // Opret produkter
@@ -87,7 +87,9 @@ public class ProductsInitdata implements CommandLineRunner {
             productsRepository.save(product6);
 
             System.out.println("Produkter tilføjet til databasen.");
-        }// else {
-          //  System.out.println("Products-tabellen er allerede udfyldt. Ingen data tilføjet.");heh
-    }
+        } else {
+            System.out.println("Products-tabellen er allerede udfyldt. Ingen data tilføjet.");
 
+        }
+    }
+}
