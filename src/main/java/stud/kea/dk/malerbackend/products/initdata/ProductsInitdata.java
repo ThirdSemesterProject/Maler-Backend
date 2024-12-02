@@ -28,6 +28,7 @@ public class ProductsInitdata implements CommandLineRunner {
                     29.95,
                     "Kitkniv i stål , Stålspartler 1\"-5\"",
                     "Værktøj",
+                    "Håndværktøj",
                     "Generic"
             );
 
@@ -37,9 +38,9 @@ public class ProductsInitdata implements CommandLineRunner {
                     24.95,
                     "Kitkniv i stål , Stålspartler 1\"-5\"",
                     "Værktøj",
+                    "Håndværktøj",
                     "Generic"
             );
-
 
             Products product3 = new Products(
                     "Jernspartel 5 cm",
@@ -47,6 +48,7 @@ public class ProductsInitdata implements CommandLineRunner {
                     19.95,
                     "Jernspartler 4-6cm",
                     "Værktøj",
+                    "Håndværktøj",
                     "Spekter"
             );
 
@@ -56,6 +58,7 @@ public class ProductsInitdata implements CommandLineRunner {
                     24.95,
                     "Jernspartler 4-6cm",
                     "Værktøj",
+                    "Håndværktøj",
                     "Spekter"
             );
 
@@ -65,16 +68,20 @@ public class ProductsInitdata implements CommandLineRunner {
                     14.95,
                     "Jernspartler 4-6cm",
                     "Værktøj",
+                    "Håndværktøj",
                     "Spekter"
             );
+
             Products product6 = new Products(
                     "Penselsæt 25 - 38 - 62 mm",
                     "http://webp.bj.dk/productFiles/6201XX-6508XX/620861_Frit.png", // Replace with actual URL
                     49.95,
                     "Et sæt af pensler med størrelser 25 mm, 38 mm og 62 mm. Ideel til forskellige maleropgaver.",
                     "Værktøj",
+                    "Pensler",
                     "Generic"
             );
+
 
             // Gem produkter i databasen
             productsRepository.save(product1);

@@ -78,11 +78,12 @@ public class PaintInitdata implements CommandLineRunner {
                     "http://webp.bj.dk/productFiles/405/405_OL.png",
                     199.95,
                     "Fortynding: Vand, Værktøj: Pensel, Påføring: +10 °C til +25°C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
-                    "Interior",
+                    "Interior", // Kategori
+                    "Vægmaling", // Underkategori
                     "B&J",
                     "5",
-                     paintNoRepository.findById(1L).get(),
-                    blackColor // Link til Color
+                    paintNoRepository.findById(1L).get(),
+                    blackColor
             );
 
             Paint paint2 = new Paint(
@@ -91,10 +92,11 @@ public class PaintInitdata implements CommandLineRunner {
                     249.95,
                     "Fortynding: Vand, Værktøj: Pensel, Påføring: +10 °C til +25°C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
+                    "Vægmaling",
                     "B&J",
                     "5",
-                     paintNoRepository.findById(2L).get(),
-                    whiteColor // Link til Color
+                    paintNoRepository.findById(2L).get(),
+                    whiteColor
             );
 
             Paint paint3 = new Paint(
@@ -103,10 +105,11 @@ public class PaintInitdata implements CommandLineRunner {
                     299.95,
                     "Fortynding: Vand, Værktøj: Pensel, Påføring: +10 °C til +25°C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
+                    "Vægmaling",
                     "B&J",
                     "5",
                     paintNoRepository.findById(3L).get(),
-                    whiteColor // Link til Color
+                    whiteColor
             );
 
             Paint paint4 = new Paint(
@@ -115,22 +118,24 @@ public class PaintInitdata implements CommandLineRunner {
                     399.95,
                     "Fortynding: Vand, Værktøj: Rulle, Påføring: +10 °C til +25°C, Rækkeevne: 6-8 m²/ltr, Tørretid: 4-6 timer, Kulør: Hvid",
                     "Interior",
+                    "Vægmaling",
                     "B&J",
                     "5",
                     paintNoRepository.findById(4L).get(),
-                    offWhiteColor // Link til Color
+                    offWhiteColor
             );
 
             Paint paint5 = new Paint(
-                    "B&J 5 vægmaling",
+                    "B&J 5 Vægmaling",
                     "http://webp.bj.dk/productFiles/405/405_OL.png",
                     349.95,
                     "Fortynding: Vand, Værktøj: Sprøjtepistol, Påføring: +10 °C til +25°C, Rækkeevne: 7-9 m²/ltr, Tørretid: 3-5 timer, Kulør: Hvid",
                     "Interior",
+                    "Vægmaling",
                     "B&J",
                     "5",
                     paintNoRepository.findById(5L).get(),
-                    whiteColor // Link til Color
+                    whiteColor
             );
 
             Paint paint6 = new Paint(
@@ -139,10 +144,11 @@ public class PaintInitdata implements CommandLineRunner {
                     499.95,
                     "Fortynding: Vand, Værktøj: Pensel eller rulle, Påføring: +5 °C til +25°C, Rækkeevne: 10-12 m²/ltr, Tørretid: 6-8 timer, Kulør: Brækket Hvid",
                     "Interior",
+                    "Vægmaling",
                     "B&J",
                     "5",
                     paintNoRepository.findById(6L).get(),
-                    offWhiteColor // Link til Color
+                    offWhiteColor
             );
 
             Paint paint7 = new Paint(
@@ -151,6 +157,7 @@ public class PaintInitdata implements CommandLineRunner {
                     199.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
+                    "Loftmaling", // Underkategori
                     "B&J",
                     "10",
                     paintNoRepository.findById(7L).get(),
@@ -163,6 +170,7 @@ public class PaintInitdata implements CommandLineRunner {
                     499.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
+                    "Loftmaling",
                     "B&J",
                     "10",
                     paintNoRepository.findById(8L).get(),
@@ -175,6 +183,7 @@ public class PaintInitdata implements CommandLineRunner {
                     749.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
+                    "Loftmaling",
                     "B&J",
                     "10",
                     paintNoRepository.findById(9L).get(),

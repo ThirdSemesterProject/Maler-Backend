@@ -25,8 +25,8 @@ public class Paint extends Products {
 
 
 
-    public Paint(String name, String url, double pris, String info, String categories, String brand, String shine, PaintNo paintNo, Color whiteColor) {
-        super(name,url, pris, info, categories, brand); // Kalder superklassens konstruktor
+    public Paint(String name, String url, double pris, String info, String categories,String subcategories, String brand, String shine, PaintNo paintNo, Color whiteColor) {
+        super(name,url, pris, info, categories, subcategories, brand); // Kalder superklassens konstruktor
         this.shine = shine;
 
         this.paintNo = paintNo;

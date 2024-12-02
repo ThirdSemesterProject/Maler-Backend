@@ -25,6 +25,10 @@ public class ProductsService {
         return productsRepository.findAll();
     }
 
+    public List<Products> getProductsBySubcategory(String subcategory) {
+        return productsRepository.findBySubcategory(subcategory);
+    }
+
     public Products getProductById(long id) {
         return productsRepository.findById(id).orElse(null);
     }

@@ -7,14 +7,16 @@ public class SearchDto {
     private String description;
     private String brand;
     private String URL;
+    private String subcategory;
 
-    public SearchDto(String name, String category, double price, String description, String brand, String URL) {
+    public SearchDto(String name, String category, double price, String description, String brand, String URL, String subcategory) {
         this.name = name;
         this.category = category;
         this.price = price;
         this.description = description;
         this.brand = brand;
         this.URL = URL;
+        this.subcategory = subcategory;
     }
 
     // Getters and Setters
@@ -62,5 +64,11 @@ public class SearchDto {
     }
     public void setURL(String URL) {
         this.URL = URL;
+    }
+    public String getSubcategory() {
+        return subcategory;
+    }
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
     }
 }

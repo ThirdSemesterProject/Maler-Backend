@@ -24,6 +24,16 @@ public class ProductsController {
         return productsService.getAllProducts();
     }
 
+    @GetMapping("/getBySubcategory")
+    public ResponseEntity<List<Products>> getProductsBySubcategory(@RequestParam String subcategory) {
+        try {
+            List<Products> products = productsService.getProductsBySubcategory(subcategory);
+            return new ResponseEntity<>(products, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Products> getPaint(@PathVariable Long id) {
         Products products = productsService.getProductById(id);

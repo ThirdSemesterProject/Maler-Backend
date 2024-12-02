@@ -25,7 +25,8 @@ public class SearchService {
                 product.getPrice(),
                 product.getDescription(),
                 product.getBrand(),
-                product.getURL()
+                product.getURL(),
+                product.getSubcategory()
         )).collect(Collectors.toList());
     }
 }
