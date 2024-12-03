@@ -4,6 +4,10 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import stud.kea.dk.malerbackend.orders.model.Orders;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Setter
@@ -15,14 +19,19 @@ public class Customer {
     private Long id;
 
     @Column(nullable = false)
-    String name;
+    String firstName;
+    String lastName;
 
     @Column(nullable = false, unique = true)
     String email;
 
     String address;
     String postNo;
-    String password;
+    String phoneNr;
+    String firma;
+
+    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Orders> orders = new ArrayList<>(); // Tilknytning til ordrer
 
     public Customer() {
     }
