@@ -50,6 +50,10 @@ public class PaintInitdata implements CommandLineRunner {
             PaintNo paintNo7 = new PaintNo(null, "4100212", "0,9 L");
             PaintNo paintNo8 = new PaintNo(null, "4100213", "2,7 L");
             PaintNo paintNo9 = new PaintNo(null, "4100215", "4,5 L");
+            PaintNo paintNo10 = new PaintNo(null, "4070212", "0,9 L");
+            PaintNo paintNo11 = new PaintNo(null, "4070213", "2,7 L");
+            PaintNo paintNo12 = new PaintNo(null, "4070215", "4,5 L");
+            PaintNo paintNo13 = new PaintNo(null, "4070216", "9 L");
 
             paintNoRepository.save(paintNo1);
             paintNoRepository.save(paintNo2);
@@ -61,6 +65,10 @@ public class PaintInitdata implements CommandLineRunner {
             paintNoRepository.save(paintNo7);
             paintNoRepository.save(paintNo8);
             paintNoRepository.save(paintNo9);
+            paintNoRepository.save(paintNo10);
+            paintNoRepository.save(paintNo11);
+            paintNoRepository.save(paintNo12);
+            paintNoRepository.save(paintNo13);
 
             System.out.println("PaintNo-data tilføjet.");
         } else {
@@ -189,6 +197,58 @@ public class PaintInitdata implements CommandLineRunner {
                     paintNoRepository.findById(9L).get(),
                     whiteColor
             );
+            Paint paint10 = new Paint(
+                    "B&J 7 Vægmaling Hvid 0,9 L",
+                    "http://webp.bj.dk/productFiles/407/4070212_OL.png",
+                    199.95,
+                    "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
+                    "Interior",
+                    "Vægmaling",
+                    "B&J",
+                    "7",
+                    paintNoRepository.findById(10L).get(),
+                    whiteColor
+            );
+
+            Paint paint11 = new Paint(
+                    "B&J 7 Vægmaling Hvid 2,7 L",
+                    "http://webp.bj.dk/productFiles/407/4070213_OL.png",
+                    399.95,
+                    "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
+                    "Interior",
+                    "Vægmaling",
+                    "B&J",
+                    "7",
+                    paintNoRepository.findById(11L).get(),
+                    whiteColor
+            );
+
+            Paint paint12 = new Paint(
+                    "B&J 7 Vægmaling Hvid 4,5 L",
+                    "http://webp.bj.dk/productFiles/407/4070215_OL.png",
+                    599.95,
+                    "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
+                    "Interior",
+                    "Vægmaling",
+                    "B&J",
+                    "7",
+                    paintNoRepository.findById(12L).get(),
+                    whiteColor
+            );
+
+            Paint paint13 = new Paint(
+                    "B&J 7 Vægmaling Hvid 9 L",
+                    "http://webp.bj.dk/productFiles/407/4070216_OL.png",
+                    999.95,
+                    "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
+                    "Interior",
+                    "Vægmaling",
+                    "B&J",
+                    "7",
+                    paintNoRepository.findById(13L).get(),
+                    whiteColor
+            );
+
 
 
             // Gem Paint i databasen
@@ -201,6 +261,10 @@ public class PaintInitdata implements CommandLineRunner {
             paintRepository.save(paint7);
             paintRepository.save(paint8);
             paintRepository.save(paint9);
+            paintRepository.save(paint10);
+            paintRepository.save(paint11);
+            paintRepository.save(paint12);
+            paintRepository.save(paint13);
 
             System.out.println("Testdata med Paint, PaintNo og Color er blevet indlæst.");
         }
