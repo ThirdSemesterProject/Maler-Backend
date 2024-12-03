@@ -37,6 +37,10 @@ public class Orders {
     @JoinColumn(name = "shop_id", nullable = false)
     private Shop shop;
 
+    @ManyToOne
+    @JoinColumn(name = "customer_id", nullable = false) // Ny kolonne for Customer
+    private Customer customer;
+
     public Orders() {}
 
     public Orders(String customerName, LocalDate orderDate) {
