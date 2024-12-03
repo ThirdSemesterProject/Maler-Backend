@@ -41,6 +41,7 @@ public class ProductsService {
             productToUpdate.setDescription(products.getDescription());
             productToUpdate.setPrice(products.getPrice());
             productToUpdate.setCategory(products.getCategory());
+            productToUpdate.setSubcategory(products.getSubcategory());
             productToUpdate.setBrand(products.getBrand());
             return productsRepository.save(productToUpdate);
         } else {
