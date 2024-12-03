@@ -199,7 +199,7 @@ public class PaintInitdata implements CommandLineRunner {
             );
             Paint paint10 = new Paint(
                     "B&J 7 Vægmaling Hvid 0,9 L",
-                    "http://webp.bj.dk/productFiles/407/4070212_OL.png",
+                    "http://webp.bj.dk/productFiles/407/407XXX3_OL.png",
                     199.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
@@ -212,7 +212,7 @@ public class PaintInitdata implements CommandLineRunner {
 
             Paint paint11 = new Paint(
                     "B&J 7 Vægmaling Hvid 2,7 L",
-                    "http://webp.bj.dk/productFiles/407/4070213_OL.png",
+                    "http://webp.bj.dk/productFiles/407/407XXX3_OL.png",
                     399.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
@@ -225,7 +225,7 @@ public class PaintInitdata implements CommandLineRunner {
 
             Paint paint12 = new Paint(
                     "B&J 7 Vægmaling Hvid 4,5 L",
-                    "http://webp.bj.dk/productFiles/407/4070215_OL.png",
+                    "http://webp.bj.dk/productFiles/407/407XXX3_OL.png",
                     599.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
@@ -238,7 +238,7 @@ public class PaintInitdata implements CommandLineRunner {
 
             Paint paint13 = new Paint(
                     "B&J 7 Vægmaling Hvid 9 L",
-                    "http://webp.bj.dk/productFiles/407/4070216_OL.png",
+                    "http://webp.bj.dk/productFiles/407/407XXX3_OL.png",
                     999.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
