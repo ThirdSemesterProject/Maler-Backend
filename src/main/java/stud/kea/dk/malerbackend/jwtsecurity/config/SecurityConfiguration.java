@@ -38,15 +38,17 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 // "antMathcers" comes from Apache Ant build system.
                 // Since Spring 3, the next line replaces the old one:
                 // .authorizeRequests().antMatchers("/login", "/signup").permitAll()
-        .authorizeHttpRequests().requestMatchers("/api/customer","api/upload/**","api/upload"," /api/colors/fetch", "/api/paint/getAllPaints","/api/search","/api/products", "api/products/*").permitAll().requestMatchers("/login", "/signup").permitAll()
+        .authorizeHttpRequests().requestMatchers("/api/upload/hero-new","api/hero","/api/customer","api/upload/**"," /api/colors/fetch", "/api/paint/getAllPaints","/api/search","/api/products", "api/products/*").permitAll().requestMatchers("/login", "/signup").permitAll()
         .anyRequest().authenticated()
         .and()
         .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+       // http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
+
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
