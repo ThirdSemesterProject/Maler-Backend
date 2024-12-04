@@ -74,4 +74,11 @@ public class ImageController {
             return ResponseEntity.status(404).body(null); // Eller returnér en fejlbesked
         }
     }
+
+    @GetMapping("/images/search")
+    public ResponseEntity<Image> searchImageByName(@RequestParam String name) {
+        Optional<Image> image = imageRepository.findImageByName(name);
+        return image.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.notFound().build());
+    }
 }
