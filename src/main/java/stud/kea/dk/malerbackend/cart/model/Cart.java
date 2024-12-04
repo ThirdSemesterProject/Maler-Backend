@@ -14,7 +14,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Cart {
-    private Long id;
     private Long productId;
     private String name;
     private String url;

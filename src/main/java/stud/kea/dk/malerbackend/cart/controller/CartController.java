@@ -1,5 +1,6 @@
 package stud.kea.dk.malerbackend.cart.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import stud.kea.dk.malerbackend.cart.model.Cart;
@@ -24,8 +25,16 @@ public class CartController {
     }
 
     @PostMapping("/add")
-    public ResponseEntity<Cart> addCartItem(@RequestBody Cart cartItem) {
-        return ResponseEntity.ok(cartService.addCartItem(cartItem));
+    public ResponseEntity<?> addCartItem(@RequestBody Cart cartItem) {
+        if (cartItem == null || cartItem.getProductId() == null) {
+            return ResponseEntity.badRequest().body("Invalid cart item.");
+        }
+        try {
+            Cart addedItem = cartService.addCartItem(cartItem);
+            return ResponseEntity.ok(addedItem);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error adding item to cart.");
+        }
     }
 
     @PatchMapping("/{productId}")
