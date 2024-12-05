@@ -40,4 +40,6 @@ public class ShopService {
     public void deleteShop(Long id) {
         shopRepository.deleteById(id);
     }
+
+    // This is a comment
 }
