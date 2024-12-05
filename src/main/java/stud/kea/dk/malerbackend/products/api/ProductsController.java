@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import stud.kea.dk.malerbackend.products.model.Products;
 import stud.kea.dk.malerbackend.products.service.ProductsService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -20,8 +22,8 @@ public class ProductsController {
     }
 
     @GetMapping("/getAllProducts")
-    public List<Products> getAllProducts() {
-        return productsService.getAllProducts();
+    public Page<Products> getAllProducts(Pageable pageable) {
+        return productsService.getAllProducts(pageable);
     }
 
     @GetMapping("/getBySubcategory")
