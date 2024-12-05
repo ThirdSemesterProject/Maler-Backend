@@ -23,8 +23,12 @@ public class ProductsService {
         return productsRepository.save(products);
     }
 
-    public Page<Products> getAllProducts(Pageable pageable) {
+    public Page<Products> getAllAdminProducts(Pageable pageable) {
         return productsRepository.findAll(pageable);
+    }
+
+    public List<Products> getAllProducts() {
+        return productsRepository.findAll();
     }
 
     public List<Products> getProductsBySubcategory(String subcategory) {
