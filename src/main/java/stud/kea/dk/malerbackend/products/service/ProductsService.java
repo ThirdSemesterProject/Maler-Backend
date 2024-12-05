@@ -4,6 +4,8 @@ import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import stud.kea.dk.malerbackend.products.model.Products;
 import stud.kea.dk.malerbackend.products.repository.ProductsRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,8 +23,8 @@ public class ProductsService {
         return productsRepository.save(products);
     }
 
-    public List<Products> getAllProducts() {
-        return productsRepository.findAll();
+    public Page<Products> getAllProducts(Pageable pageable) {
+        return productsRepository.findAll(pageable);
     }
 
     public List<Products> getProductsBySubcategory(String subcategory) {
