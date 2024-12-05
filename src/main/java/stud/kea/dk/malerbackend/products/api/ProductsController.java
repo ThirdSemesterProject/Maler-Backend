@@ -21,9 +21,14 @@ public class ProductsController {
         this.productsService = productsService;
     }
 
+    @GetMapping("/getAllAdminProducts")
+    public Page<Products> getAllAdminProducts(Pageable pageable) {
+        return productsService.getAllAdminProducts(pageable);
+    }
+
     @GetMapping("/getAllProducts")
-    public Page<Products> getAllProducts(Pageable pageable) {
-        return productsService.getAllProducts(pageable);
+    public List<Products> getAllProducts() {
+        return productsService.getAllProducts();
     }
 
     @GetMapping("/getBySubcategory")
