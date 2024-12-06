@@ -29,6 +29,9 @@ public class Orders {
     @Column(nullable = false)
     private LocalDate orderDate;
 
+    @Enumerated(EnumType.STRING)// Store enum as a string in the database
+    private OrderStatus orderStatus;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderItem> items = new ArrayList<>();
 
@@ -47,4 +50,7 @@ public class Orders {
         this.orderDate = orderDate;
     }
 
+    public enum OrderStatus {
+        PENDING, CONFIRMED, PROCESSING, DELIVERED, CANCELLED, RETURNED, FAILED, ON_HOLD
+    }
 }
