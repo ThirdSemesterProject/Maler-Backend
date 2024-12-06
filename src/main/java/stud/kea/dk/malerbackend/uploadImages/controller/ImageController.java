@@ -19,6 +19,7 @@ public class ImageController {
     private final ImageRepository imageRepository;
     private Long currentHeroImageId; // Felt til at gemme aktuelt Hero-billede-id
 
+
     // Constructor Injection
     public ImageController(ImageRepository imageRepository) {
         this.imageRepository = imageRepository;
@@ -60,7 +61,7 @@ public class ImageController {
     // Endpoint til at hente det aktuelle Hero-billede
     @GetMapping("/hero")
     public ResponseEntity<Image> getHeroImage() {
-        long fallbackHeroImageId = 1L;
+        Long fallbackHeroImageId = 1L;
 
         Long heroImageId = (currentHeroImageId != null) ? currentHeroImageId : fallbackHeroImageId;
 
