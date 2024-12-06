@@ -12,7 +12,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -35,7 +34,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         System.out.println("WebSec configure(HttpSecurity) Call: 2");
         http.cors().and().csrf().disable()  // was cors().and() after http
                 // to implement CSRF token https://www.javainuse.com/spring/boot_security_csrf
-                // "antMathcers" comes from Apache Ant build system.
+                // "antMatchers" comes from Apache Ant build system.
                 // Since Spring 3, the next line replaces the old one:
                 // .authorizeRequests().antMatchers("/login", "/signup").permitAll()
         .authorizeHttpRequests().requestMatchers("/api/customer","api/upload/**","api/upload"," /api/colors/fetch", "/api/paint/getAllPaints","/api/search","/api/products","api/cart/**", "api/products/*").permitAll().requestMatchers("/login", "/signup").permitAll()
@@ -47,8 +46,6 @@ public class SecurityConfiguration implements WebMvcConfigurer {
        // http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
-
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
@@ -64,8 +61,4 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
                 .allowCredentials(true);
     }
-    // hvis man skal køre på en virtuel maskine skal .allowedOriginPatterns("http://localhost:*")
-    // ændres til "http://*:*"
-    // med certifikat skal det være "https://*:*"
-    // certifikat køre på port 443, 80
 }

@@ -1,4 +1,4 @@
-package stud.kea.dk.malerbackend.customer.controller;
+package stud.kea.dk.malerbackend.customer.api;
 
 
 import org.springframework.http.ResponseEntity;

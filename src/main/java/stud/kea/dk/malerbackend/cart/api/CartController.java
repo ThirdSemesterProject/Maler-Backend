@@ -1,4 +1,4 @@
-package stud.kea.dk.malerbackend.cart.controller;
+package stud.kea.dk.malerbackend.cart.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

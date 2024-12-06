@@ -28,7 +28,6 @@ public class Products {
     private String brand;
     private String subcategory;
 
-
     public Products() {}
 
     public Products(String name, String URL, double price, String description, String category, String subcategory, String brand) {
@@ -40,5 +39,4 @@ public class Products {
         this.brand = brand;
         this.subcategory = subcategory;
     }
-
 }

@@ -8,14 +8,14 @@ import stud.kea.dk.malerbackend.shop.repository.ShopRepository;
 
 @Component
 @Order(5)
-public class ShopInitdata implements CommandLineRunner {
+public class ShopInitData implements CommandLineRunner {
 
     private final ShopRepository shopRepository;
 
-    public ShopInitdata(ShopRepository shopRepository) {
+    public ShopInitData(ShopRepository shopRepository) {
         this.shopRepository = shopRepository;
-
     }
+
     @Override
     public void run(String... args) throws Exception {
         // Check if the database already has data

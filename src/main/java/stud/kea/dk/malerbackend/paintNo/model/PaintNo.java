@@ -2,9 +2,6 @@ package stud.kea.dk.malerbackend.paintNo.model;
 
 import jakarta.persistence.*;
 import lombok.*;
-import stud.kea.dk.malerbackend.paint.model.Paint;
-
-import java.util.List;
 
 @Entity
 @Data
@@ -27,7 +24,5 @@ public class PaintNo {
         this.itemNo = itemNo;
         this.liters = liters;
     }
-
-    // Getters and setters...
 }
 

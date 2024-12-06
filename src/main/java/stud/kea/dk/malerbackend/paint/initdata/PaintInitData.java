@@ -12,12 +12,12 @@ import stud.kea.dk.malerbackend.paintNo.repository.PaintNoRepository;
 
 @Component
 @Order(2)
-public class PaintInitdata implements CommandLineRunner {
+public class PaintInitData implements CommandLineRunner {
 
     private final PaintRepository paintRepository;
     private final PaintNoRepository paintNoRepository;
     private final ColorRepository colorRepository;
-    public PaintInitdata(PaintRepository paintRepository, PaintNoRepository paintNoRepository, ColorRepository colorRepository) {
+    public PaintInitData(PaintRepository paintRepository, PaintNoRepository paintNoRepository, ColorRepository colorRepository) {
         this.paintRepository = paintRepository;
         this.paintNoRepository = paintNoRepository;
         this.colorRepository = colorRepository;
@@ -26,12 +26,10 @@ public class PaintInitdata implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-
         // Opret Color objekter
         Color whiteColor = colorRepository.findColorByName("White");
         Color offWhiteColor = colorRepository.findColorByName("White");
         Color blackColor = colorRepository.findColorByName("Black");
-
 
         // Gem Color i databasen
         whiteColor = colorRepository.save(whiteColor);
@@ -39,7 +37,7 @@ public class PaintInitdata implements CommandLineRunner {
         blackColor = colorRepository.save(blackColor);
 
         if (paintNoRepository.count() == 0) {
-            System.out.println("PaintNo-tabellen er tom. Tilføjer eksemplardata...");
+            System.out.println("PaintNo-tabellen er tom. Tilføjer test data...");
             PaintNo paintNo1 = new PaintNo(null, "4050212", "0,9 L");
             PaintNo paintNo2 = new PaintNo(null, "4050213", "2,7 L");
             PaintNo paintNo3 = new PaintNo(null, "4050215", "4,5 L");
@@ -75,7 +73,7 @@ public class PaintInitdata implements CommandLineRunner {
             System.out.println("PaintNo-tabellen er allerede udfyldt. Ingen data tilføjet.");
         }
         if (paintRepository.count() == 0) {
-            System.out.println("Paint-tabellen er tom. Tilføjer eksemplardata...");
+            System.out.println("Paint-tabellen er tom. Tilføjer test data...");
 
             // Antag, at der er mindst én Color i databasen
             Color defaultColor = colorRepository.findAll().stream().findFirst().orElse(null);
@@ -165,7 +163,7 @@ public class PaintInitdata implements CommandLineRunner {
                     199.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
-                    "Loftmaling", // Underkategori
+                    "Loft-maling", // Underkategori
                     "B&J",
                     "10",
                     paintNoRepository.findById(7L).get(),
@@ -178,7 +176,7 @@ public class PaintInitdata implements CommandLineRunner {
                     499.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
-                    "Loftmaling",
+                    "Loft-maling",
                     "B&J",
                     "10",
                     paintNoRepository.findById(8L).get(),
@@ -191,7 +189,7 @@ public class PaintInitdata implements CommandLineRunner {
                     749.95,
                     "Fortynding: Vand, Værktøj: Pensel, rulle eller airless, Påføring: +10 °C til +25 °C, Rækkeevne: 8-10 m²/ltr, Tørretid: 2-4 timer, Kulør: Hvid",
                     "Interior",
-                    "Loftmaling",
+                    "Loft-maling",
                     "B&J",
                     "10",
                     paintNoRepository.findById(9L).get(),
@@ -248,8 +246,6 @@ public class PaintInitdata implements CommandLineRunner {
                     paintNoRepository.findById(13L).get(),
                     whiteColor
             );
-
-
 
             // Gem Paint i databasen
             paintRepository.save(paint1);

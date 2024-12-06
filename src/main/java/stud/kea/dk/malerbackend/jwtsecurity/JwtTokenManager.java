@@ -45,7 +45,7 @@ public class JwtTokenManager {
     }
     public String getUsernameFromToken(String token) {
         System.out.println("TokenManager getUsernameFromToken(String token) With token: Call: A");
-        //Claims claims = Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody(); // before Spring 3
+        //Claims claims = jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody(); // before Spring 3
         Claims claims = getClaims(token);
         if(claims != null){
             return claims.getSubject();

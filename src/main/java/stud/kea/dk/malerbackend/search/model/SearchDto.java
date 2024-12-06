@@ -1,4 +1,4 @@
-package stud.kea.dk.malerbackend.cart.model;
+package stud.kea.dk.malerbackend.search.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,11 +9,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Cart {
-
-    private Long productId;
+public class SearchDto {
     private String name;
-    private String url;
-    private int quantity;
+    private String category;
     private double price;
+    private String description;
+    private String brand;
+    private String URL;
+    private String subcategory;
 }

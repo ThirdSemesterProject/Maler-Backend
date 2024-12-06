@@ -37,5 +37,4 @@ public class OrderItem {
     public double calculatePrice() {
         return product.getPrice() * quantity;
     }
-
 }

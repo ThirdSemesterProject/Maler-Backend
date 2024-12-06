@@ -21,7 +21,7 @@ public class ColorService {
     // Konstruktør til afhængighedsinjektion
     public ColorService(ColorRepository colorRepository) {
         this.colorRepository = colorRepository;
-        this.restTemplate = new RestTemplate(); // Initialisering her, da det ikke er en afhængighed
+        this.restTemplate = new RestTemplate(); // Initializing her, da det ikke er en afhængighed
     }
 
     public void fetchAndSaveColors() {
@@ -37,7 +37,8 @@ public class ColorService {
                 Map<String, Object> responseMap = objectMapper.readValue(jsonResponse, new TypeReference<>() {});
 
                 // Hent listen af farver fra "colors"-nøglen
-                List<Color> colors = objectMapper.convertValue(responseMap.get("colors"), new TypeReference<List<Color>>() {});
+                List<Color> colors = objectMapper.convertValue(responseMap.get("colors"), new TypeReference<>() {
+                });
 
                 // Gem kun, hvis listen ikke er tom
                 if (!colors.isEmpty()) {
@@ -57,5 +58,4 @@ public class ColorService {
             System.err.println("Uventet fejl: " + e.getMessage());
         }
     }
-
 }

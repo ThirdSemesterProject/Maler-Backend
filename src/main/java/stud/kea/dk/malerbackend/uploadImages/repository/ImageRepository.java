@@ -1,7 +1,7 @@
-package stud.kea.dk.malerbackend.UploadImages.repository;
+package stud.kea.dk.malerbackend.uploadImages.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import stud.kea.dk.malerbackend.UploadImages.model.Image;
+import stud.kea.dk.malerbackend.uploadImages.model.Image;
 
 import java.util.Optional;
 

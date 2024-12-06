@@ -1,22 +1,19 @@
 package stud.kea.dk.malerbackend.color.intitdata;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.HttpClientErrorException;
-import stud.kea.dk.malerbackend.color.model.Color;
 import stud.kea.dk.malerbackend.color.repository.ColorRepository;
 import stud.kea.dk.malerbackend.color.service.ColorService;
 
-import java.util.List;
 @Component
 @Order(1)
-public class ColorInitdata implements CommandLineRunner {
-    private ColorRepository colorRepository;
-    private ColorService colorService;
+public class ColorInitData implements CommandLineRunner {
 
-    ColorInitdata(ColorRepository colorRepository, ColorService colorService) {
+    private final ColorRepository colorRepository;
+    private final ColorService colorService;
+
+    ColorInitData(ColorRepository colorRepository, ColorService colorService) {
         this.colorRepository = colorRepository;
         this.colorService = colorService;
     }

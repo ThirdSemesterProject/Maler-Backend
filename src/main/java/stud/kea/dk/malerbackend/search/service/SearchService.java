@@ -1,8 +1,9 @@
-package stud.kea.dk.malerbackend.search;
+package stud.kea.dk.malerbackend.search.service;
 
 import org.springframework.stereotype.Service;
 import stud.kea.dk.malerbackend.products.model.Products;
 import stud.kea.dk.malerbackend.products.repository.ProductsRepository;
+import stud.kea.dk.malerbackend.search.model.SearchDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

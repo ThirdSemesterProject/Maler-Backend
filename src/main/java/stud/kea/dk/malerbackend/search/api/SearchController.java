@@ -1,7 +1,9 @@
-package stud.kea.dk.malerbackend.search;
+package stud.kea.dk.malerbackend.search.api;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import stud.kea.dk.malerbackend.search.model.SearchDto;
+import stud.kea.dk.malerbackend.search.service.SearchService;
 
 import java.util.List;
 

@@ -1,11 +1,11 @@
-package stud.kea.dk.malerbackend.UploadImages.controller;
+package stud.kea.dk.malerbackend.uploadImages.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import stud.kea.dk.malerbackend.UploadImages.model.Image;
-import stud.kea.dk.malerbackend.UploadImages.repository.ImageRepository;
+import stud.kea.dk.malerbackend.uploadImages.model.Image;
+import stud.kea.dk.malerbackend.uploadImages.repository.ImageRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +18,6 @@ public class ImageController {
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
     private final ImageRepository imageRepository;
     private Long currentHeroImageId; // Felt til at gemme aktuelt Hero-billede-id
-
 
     // Constructor Injection
     public ImageController(ImageRepository imageRepository) {
@@ -61,7 +60,7 @@ public class ImageController {
     // Endpoint til at hente det aktuelle Hero-billede
     @GetMapping("/hero")
     public ResponseEntity<Image> getHeroImage() {
-        Long fallbackHeroImageId = 1L;
+        long fallbackHeroImageId = 1L;
 
         Long heroImageId = (currentHeroImageId != null) ? currentHeroImageId : fallbackHeroImageId;
 
