@@ -16,4 +16,5 @@ public class Image {
     private String name;
     @Lob
     private String data; // Base64-data // Base64-data
+    private boolean isHero;
 }

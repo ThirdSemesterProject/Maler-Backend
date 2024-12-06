@@ -17,8 +17,6 @@ public class ImageController {
 
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
     private final ImageRepository imageRepository;
-    private Long currentHeroImageId; // Felt til at gemme aktuelt Hero-billede-id
-
 
     // Constructor Injection
     public ImageController(ImageRepository imageRepository) {
@@ -48,32 +46,53 @@ public class ImageController {
         return ResponseEntity.ok(images);
     }
 
-    // Endpoint til at gemme det aktuelle Hero-billede
-    @PutMapping ("/hero-new")
+    @PatchMapping("/hero-new")
     public ResponseEntity<String> setHeroImage(@RequestBody Long imageId) {
+        logger.info("Received imageId: " + imageId);
+
         if (!imageRepository.existsById(imageId)) {
+            logger.warn("Image ID does not exist: " + imageId);
             return ResponseEntity.badRequest().body("Image ID does not exist.");
         }
-        currentHeroImageId = imageId;
-        return ResponseEntity.ok("Hero image updated successfully.");
+
+        // Fjern Hero-markeringen fra det nuværende Hero-billede
+        imageRepository.findAll().forEach(image -> {
+            if (image.isHero()) {
+                image.setHero(false);
+                imageRepository.save(image);
+            }
+        });
+
+        // Marker det nye billede som Hero
+        Optional<Image> newHeroImage = imageRepository.findById(imageId);
+        if (newHeroImage.isPresent()) {
+            Image image = newHeroImage.get();
+            image.setHero(true);
+            imageRepository.save(image);
+            logger.info("Hero image updated successfully to ID: " + imageId);
+            return ResponseEntity.ok("Hero image updated successfully.");
+        } else {
+            return ResponseEntity.status(500).body("Failed to update Hero image.");
+        }
     }
 
     // Endpoint til at hente det aktuelle Hero-billede
     @GetMapping("/hero")
     public ResponseEntity<Image> getHeroImage() {
-        Long fallbackHeroImageId = 1L;
+        Optional<Image> heroImage = imageRepository.findAll()
+                .stream()
+                .filter(Image::isHero)
+                .findFirst();
 
-        Long heroImageId = (currentHeroImageId != null) ? currentHeroImageId : fallbackHeroImageId;
-
-        Optional<Image> image = imageRepository.findById(heroImageId);
-        if (image.isPresent()) {
-            logger.info("Returning Hero image with ID: " + heroImageId);
-            return ResponseEntity.ok(image.get());
+        if (heroImage.isPresent()) {
+            logger.info("Returning Hero image with ID: " + heroImage.get().getId());
+            return ResponseEntity.ok(heroImage.get());
         } else {
-            logger.warn("Hero image not found for ID: " + heroImageId);
-            return ResponseEntity.status(404).body(null); // Eller returnér en fejlbesked
+            logger.warn("No Hero image found in the database.");
+            return ResponseEntity.status(404).body(null);
         }
     }
+
     @GetMapping("/images/search")
     public ResponseEntity<Image> searchImageByName(@RequestParam String name) {
         Optional<Image> image = imageRepository.findImageByName(name);

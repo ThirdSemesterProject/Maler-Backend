@@ -1,5 +1,6 @@
 package stud.kea.dk.malerbackend.color.api;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import stud.kea.dk.malerbackend.color.service.ColorService;
@@ -18,4 +19,5 @@ public class ColorController {
         colorService.fetchAndSaveColors();
         return "Colors fetched and saved successfully!";
     }
+
 }
