@@ -37,8 +37,8 @@ public class OrdersInitData implements CommandLineRunner {
             List<Customer> customers = customerRepository.findAll();
             List<Shop> shops = shopRepository.findAll();
 
-            if (customers.isEmpty() || shops.isEmpty()) {
-                System.out.println("No customers or shops found. Cannot add orders.");
+            if (customers.size() < 3 || shops.size() < 2) {
+                System.out.println("Not enough customers or shops available. Cannot add orders.");
                 return;
             }
 

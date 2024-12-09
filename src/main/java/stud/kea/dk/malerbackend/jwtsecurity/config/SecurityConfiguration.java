@@ -21,10 +21,9 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     private JwtAuthenticationEntryPoint authenticationEntryPoint;
     private JwtFilter filter;
     private static PasswordEncoder passwordEncoder;
-
     @Bean
     public static PasswordEncoder passwordEncoder() {
-        if (passwordEncoder == null) {
+        if(passwordEncoder==null){
             passwordEncoder = new BCryptPasswordEncoder();
         }
         return passwordEncoder;
@@ -35,6 +34,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests()
                 .requestMatchers(
+                        "/api/orders/**",
+                        "/api/shop",
                         "/api/customer",
                         "/api/upload/**",
                         "/api/colors/fetch",
@@ -72,12 +73,10 @@ public class SecurityConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOriginPatterns("http://localhost:*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
-                .allowCredentials(true)
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization", "Content-Type");
-        System.out.println("CORS Configuration Applied");
+        System.out.println("addCorsMappings called");
+        registry.addMapping("/**")  // /** means match any string recursively
+                .allowedOriginPatterns("http://localhost:*") //Multiple strings allowed. Wildcard * matches all port numbers.
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS") // decide which methods to allow
+                .allowCredentials(true);
     }
 }
