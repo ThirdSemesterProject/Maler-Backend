@@ -5,18 +5,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import stud.kea.dk.malerbackend.customer.model.Customer;
 import stud.kea.dk.malerbackend.customer.repository.CustomerRepository;
+import stud.kea.dk.malerbackend.customer.service.CustomerService;
 
+import java.util.List;
 import java.util.Optional;
-
 
 @RestController
 @CrossOrigin
 @RequestMapping("/api/customer")
 public class CustomerController {
 
+    private final CustomerService customerService;
     private final CustomerRepository customerRepository;
 
-    public CustomerController(CustomerRepository customerRepository) {
+    public CustomerController(CustomerService customerService, CustomerRepository customerRepository) {
+        this.customerService = customerService;
         this.customerRepository = customerRepository;
     }
 
@@ -45,5 +48,21 @@ public class CustomerController {
         customerRepository.save(customer);
 
         return ResponseEntity.status(201).body("Customer created successfully with ID: " + customer.getId());
+    }
+
+
+    @GetMapping("/GetAllCustomers")
+    public List<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
+    }
+
+    @GetMapping("/CustomerById/{id}")
+    public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
+        Customer customer = customerService.getCustomersById(id);
+        if (customer!= null) {
+            return ResponseEntity.ok(customer);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }

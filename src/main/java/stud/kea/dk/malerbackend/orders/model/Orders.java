@@ -1,5 +1,6 @@
 package stud.kea.dk.malerbackend.orders.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,10 +38,12 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name = "shop_id", nullable = false)
+    @JsonBackReference
     private Shop shop;
 
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false) // Ny kolonne for Customer
+    @JsonBackReference
     private Customer customer;
 
     public Orders() {}
