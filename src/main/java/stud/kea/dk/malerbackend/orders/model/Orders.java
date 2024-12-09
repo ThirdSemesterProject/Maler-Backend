@@ -1,6 +1,8 @@
 package stud.kea.dk.malerbackend.orders.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,7 +26,6 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
     private String customerName;
 
     @Column(nullable = false)
@@ -38,13 +39,12 @@ public class Orders {
 
     @ManyToOne
     @JoinColumn(name = "shop_id", nullable = false)
-    @JsonBackReference
     private Shop shop;
 
     @ManyToOne
-    @JoinColumn(name = "customer_id", nullable = false) // Ny kolonne for Customer
-    @JsonBackReference
+    @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+
 
     public Orders() {}
 
