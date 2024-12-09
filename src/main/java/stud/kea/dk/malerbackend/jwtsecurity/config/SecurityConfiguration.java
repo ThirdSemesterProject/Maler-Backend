@@ -47,7 +47,11 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         "/api/order-items/*",
                         "/api/orders/*",
                         "/api/customer/*",
-                        "/api/customer/CustomerById/*"
+                        "/api/customer/CustomerById/*",
+                        "/api/orders/status/*",
+                        "/api/orders/status/MODTAGET",
+                        "/api/orders/status/IGANGVÆRENDE",
+                        "/api/orders/status/AFSLUTTET"
                 ).permitAll()
                 .requestMatchers("/login", "/signup").permitAll()
                 .anyRequest().authenticated()

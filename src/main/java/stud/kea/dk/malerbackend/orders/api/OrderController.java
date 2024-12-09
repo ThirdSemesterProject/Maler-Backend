@@ -18,11 +18,13 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    // En GetMapping der henter alle ordre
     @GetMapping("/getAllOrders")
     public List<Orders> getAllOrders() {
         return orderService.getAllOrder();
     }
 
+    // En GetMapping der henter ordre ud fra ID
     @GetMapping("/{id}")
     public ResponseEntity<Orders> getOrderById(@PathVariable Long id) {
         Orders orders = orderService.getOrdersById(id);
@@ -30,6 +32,17 @@ public class OrderController {
             return ResponseEntity.ok(orders);
         } else {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    // En GetMapping der henter ordre ud fra status
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Orders>> getOrdersByStatus(@PathVariable String status) {
+        List<Orders> orderList = orderService.getOrderByStatus(status);
+        if (orderList.isEmpty()) {
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.ok(orderList);
         }
     }
 }

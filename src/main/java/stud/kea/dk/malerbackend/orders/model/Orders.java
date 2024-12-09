@@ -54,6 +54,6 @@ public class Orders {
     }
 
     public enum OrderStatus {
-        PENDING, CONFIRMED, PROCESSING, DELIVERED, CANCELLED, RETURNED, FAILED, ON_HOLD
+            MODTAGET, IGANGVÆRENDE, AFSLUTTET
     }
 }

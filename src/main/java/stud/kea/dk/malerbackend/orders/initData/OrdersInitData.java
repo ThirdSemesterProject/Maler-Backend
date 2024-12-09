@@ -46,21 +46,21 @@ public class OrdersInitData implements CommandLineRunner {
             Orders order1 = new Orders();
             order1.setCustomerName(customers.get(0).getFirstName() + " " + customers.get(0).getLastName());
             order1.setOrderDate(LocalDate.now().minusDays(5));
-            order1.setOrderStatus(Orders.OrderStatus.CONFIRMED);
+            order1.setOrderStatus(Orders.OrderStatus.MODTAGET);
             order1.setShop(shops.get(0));
             order1.setCustomer(customers.get(0));
 
             Orders order2 = new Orders();
             order2.setCustomerName(customers.get(1).getFirstName() + " " + customers.get(1).getLastName());
             order2.setOrderDate(LocalDate.now().minusDays(2));
-            order2.setOrderStatus(Orders.OrderStatus.PROCESSING);
+            order2.setOrderStatus(Orders.OrderStatus.IGANGVÆRENDE);
             order2.setShop(shops.get(1));
             order2.setCustomer(customers.get(1));
 
             Orders order3 = new Orders();
             order3.setCustomerName(customers.get(2).getFirstName() + " " + customers.get(2).getLastName());
             order3.setOrderDate(LocalDate.now());
-            order3.setOrderStatus(Orders.OrderStatus.PENDING);
+            order3.setOrderStatus(Orders.OrderStatus.AFSLUTTET);
             order3.setShop(shops.get(0));
             order3.setCustomer(customers.get(2));
 
