@@ -37,6 +37,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                 .requestMatchers(
                         "/api/customer",
                         "/api/shop/**",
+                        "/api/upload",
+                        "/api/upload/",
                         "/api/upload/**",
                         "/api/colors/fetch",
                         "/api/paint/getAllPaints",
