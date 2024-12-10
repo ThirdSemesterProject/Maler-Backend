@@ -148,18 +148,17 @@ public class OrderService {
 
         return response;
 
-        return orderRepository.findByOrderStatus(Orders.OrderStatus.valueOf(status));
     }
 
     // Metode der opdatere ordre statussen.
     public void updateOrderStatus(Long orderId, String newStatus) {
-        Orders order = orderRepository.findById(orderId)
+        Orders order = ordersRepository.findById(orderId)
                 .orElseThrow(() -> new EntityNotFoundException("Order not found with ID: " + orderId));
 
         try {
             Orders.OrderStatus updatedStatus = Orders.OrderStatus.valueOf(newStatus.toUpperCase());
             order.setOrderStatus(updatedStatus);
-            orderRepository.save(order);
+            ordersRepository.save(order);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException("Invalid status provided: " + newStatus);
         }

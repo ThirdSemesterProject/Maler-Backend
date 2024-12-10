@@ -28,8 +28,9 @@ public class ShopController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Shop> getShopById(@PathVariable Long id) {
+    public ResponseEntity<ShopDTO> getShopById(@PathVariable Long id) {
         return shopService.getShopById(id)
+                .map(shop -> new ShopDTO(shop.getId(), shop.getName(), shop.getAddress(), shop.getEmail()))
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
