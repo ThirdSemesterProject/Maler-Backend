@@ -1,5 +1,6 @@
 package stud.kea.dk.malerbackend.orders.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import stud.kea.dk.malerbackend.orders.model.Orders;
 import stud.kea.dk.malerbackend.orders.repository.OrderRepository;
@@ -34,6 +35,24 @@ public class OrderService {
 
     // Metode der henter alle ordre ud fra dens status
     public List<Orders> getOrderByStatus(String status) {
-        return orderRepository.findByOrderStatus(Orders.OrderStatus.valueOf(status)); // Use Orders.OrderStatus
+        return orderRepository.findByOrderStatus(Orders.OrderStatus.valueOf(status));
+    }
+
+    // Metode der opdatere ordre statussen.
+    public void updateOrderStatus(Long orderId, String newStatus) {
+        Orders order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new EntityNotFoundException("Order not found with ID: " + orderId));
+
+        try {
+            Orders.OrderStatus updatedStatus = Orders.OrderStatus.valueOf(newStatus.toUpperCase());
+            order.setOrderStatus(updatedStatus);
+            orderRepository.save(order);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("Invalid status provided: " + newStatus);
+        }
+    }
+
+    public List<Orders> findOrdersByCustomerId(Long id) {
+        return null;
     }
 }

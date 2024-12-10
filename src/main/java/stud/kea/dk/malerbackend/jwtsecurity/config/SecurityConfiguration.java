@@ -51,7 +51,10 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         "/api/orders/status/*",
                         "/api/orders/status/MODTAGET",
                         "/api/orders/status/IGANGVÆRENDE",
-                        "/api/orders/status/AFSLUTTET"
+                        "/api/orders/status/AFSLUTTET",
+                        "/api/orders/1/status",
+                        "/api/orders/2/status",
+                        "/api/orders/3/status"
                 ).permitAll()
                 .requestMatchers("/login", "/signup").permitAll()
                 .anyRequest().authenticated()
@@ -74,7 +77,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOriginPatterns("http://localhost:*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS","PATCH")
                 .allowCredentials(true)
                 .allowedHeaders("*")
                 .exposedHeaders("Authorization", "Content-Type");
