@@ -10,7 +10,7 @@ import stud.kea.dk.malerbackend.uploadImages.repository.ImageRepository;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+//@CrossOrigin
 @RestController
 @RequestMapping("api/upload")
 public class ImageController {
