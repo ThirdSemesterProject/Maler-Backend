@@ -1,5 +1,6 @@
 package stud.kea.dk.malerbackend.orderItem.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,10 +19,12 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "order_id", nullable = false) // Fremmednøgle til Orders
+    @JsonBackReference
     private Orders order;
 
     @ManyToOne
     @JoinColumn(name = "product_id", nullable = false) // Fremmednøgle til Products
+    @JsonBackReference
     private Products product;
 
     private int quantity;
@@ -37,5 +40,4 @@ public class OrderItem {
     public double calculatePrice() {
         return product.getPrice() * quantity;
     }
-
 }

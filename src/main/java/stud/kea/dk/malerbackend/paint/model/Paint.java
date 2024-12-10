@@ -14,7 +14,6 @@ public class Paint extends Products {
 
     private String shine;
 
-
     @ManyToOne
     @JoinColumn(name = "paint_no_id", nullable = false) // Foreign key til PaintNo
     private PaintNo paintNo;
@@ -22,8 +21,6 @@ public class Paint extends Products {
     @ManyToOne
     @JoinColumn(name = "color_id")
     private Color color;
-
-
 
     public Paint(String name, String url, double pris, String info, String categories,String subcategories, String brand, String shine, PaintNo paintNo, Color whiteColor) {
         super(name,url, pris, info, categories, subcategories, brand); // Kalder superklassens konstruktor

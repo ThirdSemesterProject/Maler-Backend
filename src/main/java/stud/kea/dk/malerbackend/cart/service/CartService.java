@@ -18,6 +18,14 @@ public class CartService {
 
     // Tilføj et produkt til kurven
     public Cart addCartItem(Cart cartItem) {
+        for (Cart item : cartItems) {
+            if (item.getProductId().equals(cartItem.getProductId())) {
+                // Produktet findes allerede i kurven, opdater mængden
+                item.setQuantity(item.getQuantity() + cartItem.getQuantity());
+                return item;
+            }
+        }
+        // Hvis produktet ikke findes, tilføj det til kurven
         cartItems.add(cartItem);
         return cartItem;
     }

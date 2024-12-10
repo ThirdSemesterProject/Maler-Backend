@@ -9,5 +9,4 @@ public class MalerBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(MalerBackendApplication.class, args);
     }
-
 }
