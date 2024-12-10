@@ -22,9 +22,9 @@ public class CustomerInitData implements CommandLineRunner {
         if (customerRepository.count() == 0) {
             System.out.println("Customer-tabellen er tom. Tilføjer testdata...");
 
-            Customer customer = new Customer("Martin", "TestPerson","mapo@mail.com","Stenhuggere gade 7", "2860", "52146974", "Dette firma");
-            Customer customer2 = new Customer("Philip", "TestPerson","Phil99@mail.com","Invisible Street 14", "2587", "87964123", "Et andet firma");
-            Customer customer3 = new Customer("Alexander", "TestPerson","Al82@mail.com","Christmas Wonderland 9", "5658", "85743691", "Et tredje firma");
+            Customer customer = new Customer("Test", "Person #1","mapo@mail.com","Stenhuggere gade 7", "2860", "52146974", "Dette firma");
+            Customer customer2 = new Customer("Test", "Person #2","Phil99@mail.com","Invisible Street 14", "2587", "87964123", "Et andet firma");
+            Customer customer3 = new Customer("Test", "Person #3","Al82@mail.com","Christmas Wonderland 9", "5658", "85743691", "Et tredje firma");
             customerRepository.save(customer);
             customerRepository.save(customer2);
             customerRepository.save(customer3);
