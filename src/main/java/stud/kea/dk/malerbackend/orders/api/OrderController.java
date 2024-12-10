@@ -3,7 +3,7 @@ package stud.kea.dk.malerbackend.orders.api;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import stud.kea.dk.malerbackend.orders.model.Orders;
+import stud.kea.dk.malerbackend.orders.dto.OrderResponse;
 import stud.kea.dk.malerbackend.orders.service.OrderService;
 
 import java.util.List;
@@ -20,27 +20,27 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    // En GetMapping der henter alle ordre
+    // Get all orders, now returning DTOs
     @GetMapping("/getAllOrders")
-    public List<Orders> getAllOrders() {
-        return orderService.getAllOrder();
+    public List<OrderResponse> getAllOrders() {
+        return orderService.getAllOrder(); // Return the DTOs
     }
 
-    // En GetMapping der henter ordre ud fra ID
+    // Get order by ID, returning DTO
     @GetMapping("/{id}")
-    public ResponseEntity<Orders> getOrderById(@PathVariable Long id) {
-        Orders orders = orderService.getOrdersById(id);
-        if (orders!= null) {
-            return ResponseEntity.ok(orders);
+    public ResponseEntity<OrderResponse> getOrderById(@PathVariable Long id) {
+        OrderResponse response = orderService.getOrderDetails(id); // Use DTO method
+        if (response != null) {
+            return ResponseEntity.ok(response);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    // En GetMapping der henter ordre ud fra status
+    // Get orders by status, returning DTOs
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<Orders>> getOrdersByStatus(@PathVariable String status) {
-        List<Orders> orderList = orderService.getOrderByStatus(status);
+    public ResponseEntity<List<OrderResponse>> getOrdersByStatus(@PathVariable String status) {
+        List<OrderResponse> orderList = orderService.getOrderByStatus(status); // Return DTOs
         if (orderList.isEmpty()) {
             return ResponseEntity.noContent().build();
         } else {
@@ -48,17 +48,17 @@ public class OrderController {
         }
     }
 
-    // En Get Mapping der henter kunder ud fra deres Id
+    // Get orders by customer ID, returning DTOs
     @GetMapping("/customer/{id}")
-    public ResponseEntity<List<Orders>> getOrdersByCustomer(@PathVariable Long id) {
-        List<Orders> orders = orderService.findOrdersByCustomerId(id);
+    public ResponseEntity<List<OrderResponse>> getOrdersByCustomer(@PathVariable Long id) {
+        List<OrderResponse> orders = orderService.findOrdersByCustomerId(id); // Return DTOs
         if (orders.isEmpty()) {
             return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(orders);
     }
 
-    // En Patch Mapping til at redigere statussen på ordre i frontend.
+    // Patch mapping for updating order status, no change needed here
     @PatchMapping("/{id}/status")
     public ResponseEntity<String> changeOrderStatus(@PathVariable Long id, @RequestBody Map<String, String> statusUpdate) {
         String newStatus = statusUpdate.get("status");

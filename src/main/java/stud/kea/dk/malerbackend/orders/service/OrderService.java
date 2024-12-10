@@ -8,7 +8,6 @@ import stud.kea.dk.malerbackend.orderItem.model.OrderItem;
 import stud.kea.dk.malerbackend.orderItem.repository.OrderItemRepository;
 import stud.kea.dk.malerbackend.orders.dto.OrderRequest;
 import stud.kea.dk.malerbackend.orders.dto.OrderResponse;
-import stud.kea.dk.malerbackend.orders.entity.OrderDetailsDTO;
 import stud.kea.dk.malerbackend.orders.model.Orders;
 import stud.kea.dk.malerbackend.orders.repository.OrderRepository;
 import stud.kea.dk.malerbackend.shop.model.Shop;
@@ -16,7 +15,7 @@ import stud.kea.dk.malerbackend.shop.repository.ShopRepository;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderService {
@@ -32,29 +31,6 @@ public class OrderService {
         this.customerRepository = customerRepository;
         this.orderItemRepository = orderItemRepository;
         this.ordersRepository = ordersRepository;
-    }
-
-    // Constructor injection
-
-    // Metode der henter ordre detaljer ud fra ID
-    public Optional<Orders> getOrderDetailsById(Long orderId) {
-        return ordersRepository.findById(orderId);
-    }
-
-    // Metode der henter alle ordre
-    public List<Orders> getAllOrder() {
-        return ordersRepository.findAll();
-    }
-
-    // Metode der henter alle ordre ud fr ID
-    public Orders getOrdersById(Long id) {
-        return ordersRepository.findById(id).orElse(null);
-    }
-
-    // Metode der henter alle ordre ud fra dens status
-    public List<Orders> getOrderByStatus(String status) {
-
-        return ordersRepository.findByOrderStatus(Orders.OrderStatus.valueOf(status)); // Use Orders.OrderStatus
     }
 
     public OrderResponse createOrder(OrderRequest request) {
@@ -127,29 +103,6 @@ public class OrderService {
         return response;
     }
 
-    public OrderResponse getOrderDetails(Long orderId) {
-        Orders order = ordersRepository.findById(orderId)
-                .orElseThrow(() -> new IllegalArgumentException("Order not found with ID: " + orderId));
-
-        Customer customer = order.getCustomer();
-        List<OrderItem> items = orderItemRepository.findByOrder_Id(orderId);
-
-        OrderResponse response = new OrderResponse();
-        response.setOrderId(order.getId());
-        response.setCustomerName(customer.getFirstName() + " " + customer.getLastName());
-        response.setOrderDate(order.getOrderDate());
-        response.setShopName(order.getShop().getName());
-        response.setOrderStatus(order.getOrderStatus().name());
-        response.setItemNames(
-                items.stream()
-                        .map(item -> item.getProduct().getName())
-                        .toList()
-        );
-
-        return response;
-
-    }
-
     // Metode der opdatere ordre statussen.
     public void updateOrderStatus(Long orderId, String newStatus) {
         Orders order = ordersRepository.findById(orderId)
@@ -164,9 +117,50 @@ public class OrderService {
         }
     }
 
-    public List<Orders> findOrdersByCustomerId(Long id) {
-        return null;
+    // Method to fetch all orders and map them to OrderResponse DTOs
+    public List<OrderResponse> getAllOrder() {
+        List<Orders> orders = ordersRepository.findAll();
+        return orders.stream()
+                .map(order -> mapToOrderResponse(order))
+                .collect(Collectors.toList());
+    }
 
+    // Method to get order details by ID and return the OrderResponse DTO
+    public OrderResponse getOrderDetails(Long orderId) {
+        Orders order = ordersRepository.findById(orderId)
+                .orElseThrow(() -> new IllegalArgumentException("Order not found with ID: " + orderId));
+
+        return mapToOrderResponse(order);
+    }
+
+    // Method to fetch orders by status and return them as OrderResponse DTOs
+    public List<OrderResponse> getOrderByStatus(String status) {
+        List<Orders> orders = ordersRepository.findByOrderStatus(Orders.OrderStatus.valueOf(status));
+        return orders.stream()
+                .map(order -> mapToOrderResponse(order))
+                .collect(Collectors.toList());
+    }
+
+    // Method to fetch orders by customer ID and return them as OrderResponse DTOs
+    public List<OrderResponse> findOrdersByCustomerId(Long id) {
+        List<Orders> orders = ordersRepository.findByCustomerId(id);  // Make sure you have this method in your repository
+        return orders.stream()
+                .map(order -> mapToOrderResponse(order))
+                .collect(Collectors.toList());
+    }
+
+    // Method to map Orders entity to OrderResponse DTO
+    private OrderResponse mapToOrderResponse(Orders order) {
+        OrderResponse response = new OrderResponse();
+        response.setOrderId(order.getId());
+        response.setCustomerName(order.getCustomerName());
+        response.setOrderDate(order.getOrderDate());
+        response.setShopName(order.getShop().getName());
+        response.setOrderStatus(order.getOrderStatus().name());
+        response.setItemNames(order.getItems().stream()
+                .map(orderItem -> orderItem.getProduct().getName())  // Adjust according to your OrderItem structure
+                .collect(Collectors.toList()));
+        return response;
     }
 }
 

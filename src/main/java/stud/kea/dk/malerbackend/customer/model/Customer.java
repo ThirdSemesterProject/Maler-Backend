@@ -1,6 +1,5 @@
 package stud.kea.dk.malerbackend.customer.model;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -34,7 +33,6 @@ public class Customer {
     String firma;
 
     @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, orphanRemoval = true)
-
     private List<Orders> orders = new ArrayList<>();
 
     public Customer(String firstName, String lastName, String email, String address, String postNo, String phoneNr, String firma) {
