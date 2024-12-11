@@ -2,7 +2,6 @@ package stud.kea.dk.malerbackend.orders.dto;
 
 import lombok.Getter;
 import lombok.Setter;
-import stud.kea.dk.malerbackend.orderItem.model.OrderItem;
 
 import java.time.LocalDate;
 import java.util.List;

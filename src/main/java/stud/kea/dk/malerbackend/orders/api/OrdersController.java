@@ -8,9 +8,6 @@ import stud.kea.dk.malerbackend.orders.dto.OrderResponse;
 
 import stud.kea.dk.malerbackend.orders.service.OrderService;
 
-
-
-
 @RestController
 @RequestMapping("/api/orders")
 @CrossOrigin
