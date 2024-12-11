@@ -1,5 +1,6 @@
 package stud.kea.dk.malerbackend.jwtsecurity.config;
 
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import stud.kea.dk.malerbackend.jwtsecurity.JwtAuthenticationEntryPoint;
 import stud.kea.dk.malerbackend.jwtsecurity.JwtFilter;
 import lombok.AllArgsConstructor;
@@ -52,12 +53,12 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         "/api/customer/*",
                         "/api/customer/CustomerById/*",
                         "/api/orders/status/*",
-                        "/api/orders/status/MODTAGET",
-                        "/api/orders/status/IGANGVÆRENDE",
-                        "/api/orders/status/AFSLUTTET",
-                        "/api/orders/1/status",
-                        "/api/orders/2/status",
-                        "/api/orders/3/status"
+                        "/api/orders/*/status",
+                        "/api/orders/*/*",
+                        "/api/orders/{id}/status",
+                        "/api/**",
+                        "/api/orders/*",
+                        "/api/orders/**"
                 ).permitAll()
                 .requestMatchers("/login", "/signup").permitAll()
                 .anyRequest().authenticated()
@@ -79,10 +80,11 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*")
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS","PATCH")
+                .allowedOriginPatterns("https://*:*", "http://*:*")
+                .allowedOrigins()
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH")
                 .allowCredentials(true)
-                .allowedHeaders("*")
+                .allowedHeaders("*","http://localhost:*")
                 .exposedHeaders("Authorization", "Content-Type");
         System.out.println("CORS Configuration Applied");
     }
