@@ -1,10 +1,8 @@
 package stud.kea.dk.malerbackend.cart.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Data
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,4 +14,11 @@ public class Cart {
     private String url;
     private int quantity;
     private double price;
+
+    public Cart(Long productId, String name, int quantity, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.quantity = quantity;
+        this.price = price;
+    }
 }
