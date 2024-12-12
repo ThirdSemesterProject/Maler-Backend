@@ -9,4 +9,5 @@ public interface OrderRepository extends JpaRepository<Orders, Long> {
     // Query metode der finder ordre ud fra status
     List<Orders> findByCustomerId(Long customerId);
     List<Orders> findByOrderStatus(Orders.OrderStatus status);
+
 }

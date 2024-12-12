@@ -80,12 +80,12 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("https://*:*", "http://*:*")
-                .allowedOrigins()
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS", "PATCH")
+                .allowedOrigins("https://thirdsemesterproject.github.io") // Tillad dit GitHub Pages-domæne
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
                 .allowCredentials(true)
-                .allowedHeaders("*","http://localhost:*")
+                .allowedHeaders("*")
                 .exposedHeaders("Authorization", "Content-Type");
         System.out.println("CORS Configuration Applied");
     }
 }
+
