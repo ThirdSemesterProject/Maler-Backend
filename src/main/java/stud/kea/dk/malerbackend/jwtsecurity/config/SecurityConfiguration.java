@@ -56,7 +56,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         "/api/orders/{id}/status",
                         "/api/**",
                         "/api/orders/*",
-                        "/api/orders/**"
+                        "/api/orders/**",
+                        "/getSecret"
                 ).permitAll()
                 .requestMatchers("/login", "/signup").permitAll()
                 .anyRequest().authenticated()
