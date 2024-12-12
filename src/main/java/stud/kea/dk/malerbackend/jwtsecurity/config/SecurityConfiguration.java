@@ -41,6 +41,8 @@ public class SecurityConfiguration implements WebMvcConfigurer {
                         "/api/upload",
                         "/api/upload/",
                         "/api/upload/**",
+                        "/api/upload/hero",
+                        "/api/upload/hero-new",
                         "/api/colors/fetch",
                         "/api/paint/getAllPaints",
                         "/api/search",
