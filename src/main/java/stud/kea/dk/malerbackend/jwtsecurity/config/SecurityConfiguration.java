@@ -80,7 +80,7 @@ public class SecurityConfiguration implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("https://thirdsemesterproject.github.io", "https://thirdsemesterproject.github.io/malerfrontend/")
+                .allowedOrigins("https://thirdsemesterproject.github.io", "https://thirdsemesterproject.github.io/Maler-Frontend/")
                 .allowedOriginPatterns("https://*.github.io")
                 // Tillad dit GitHub Pages-domæne
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
