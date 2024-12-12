@@ -19,77 +19,56 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @AllArgsConstructor
 public class SecurityConfiguration implements WebMvcConfigurer {
-    private JwtAuthenticationEntryPoint authenticationEntryPoint;
-    private JwtFilter filter;
-    private static PasswordEncoder passwordEncoder;
 
+    private final JwtAuthenticationEntryPoint authenticationEntryPoint;
+    private final JwtFilter jwtFilter;
+
+    // PasswordEncoder Bean til kryptering af adgangskoder
     @Bean
     public static PasswordEncoder passwordEncoder() {
-        if (passwordEncoder == null) {
-            passwordEncoder = new BCryptPasswordEncoder();
-        }
-        return passwordEncoder;
+        return new BCryptPasswordEncoder();
     }
 
+    // SecurityFilterChain til at konfigurere HTTP-sikkerhed
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
+        http.cors() // Aktiver CORS
+                .and()
+                .csrf().disable() // Deaktiver CSRF (ikke nødvendigt for REST API'er)
                 .authorizeHttpRequests()
                 .requestMatchers(
-                        "/api/customer",
-                        "/api/shop/**",
-                        "/api/upload",
-                        "/api/upload/",
-                        "/api/upload/**",
-                        "/api/upload/hero",
-                        "/api/upload/hero-new",
-                        "/api/colors/fetch",
-                        "/api/paint/getAllPaints",
-                        "/api/search",
-                        "/api/products",
-                        "/api/cart/**",
-                        "/api/products/*",
-                        "/api/order-details/*",
-                        "/api/order-items/*",
-                        "/api/orders/*",
-                        "/api/customer/*",
-                        "/api/customer/CustomerById/*",
-                        "/api/orders/status/*",
-                        "/api/orders/*/status",
-                        "/api/orders/*/*",
-                        "/api/orders/{id}/status",
-                        "/api/**",
-                        "/api/orders/*",
-                        "/api/orders/**"
+                        "/api/**", // Tillad alle endpoints under /api
+                        "/login", // Tillad login-endpoint
+                        "/signup" // Tillad signup-endpoint
                 ).permitAll()
-                .requestMatchers("/login", "/signup").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest().authenticated() // Alle andre forespørgsler kræver authentication
                 .and()
-                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint)
+                .exceptionHandling().authenticationEntryPoint(authenticationEntryPoint) // Håndter uautoriserede forespørgsler
                 .and()
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); // Brug stateless sessioner
 
-        //http.addFilterBefore(filter, UsernamePasswordAuthenticationFilter.class);
+        // Tilføj JWT-filter til at validere tokens
+        http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 
+    // Bean til AuthenticationManager, som bruges til at håndtere authentication
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
             throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    // Konfiguration af CORS
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")
-                .allowedOrigins("https://thirdsemesterproject.github.io", "https://thirdsemesterproject.github.io/Maler-Frontend/")
-                .allowedOriginPatterns("https://*.github.io")
-                // Tillad dit GitHub Pages-domæne
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH")
-                .allowCredentials(true)
-                .allowedHeaders("*")
-                .exposedHeaders("Authorization", "Content-Type");
+        registry.addMapping("/**") // Tillad alle endpoints
+                .allowedOriginPatterns("https://*.github.io") // Tillad alle subdomæner under GitHub Pages
+                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH") // Tillad specifikke HTTP-metoder
+                .allowCredentials(true) // Tillad credentials som cookies og authorization headers
+                .allowedHeaders("*") // Tillad alle headers
+                .exposedHeaders("Authorization", "Content-Type"); // Eksponer disse headers for klienten
         System.out.println("CORS Configuration Applied");
     }
 }
-
